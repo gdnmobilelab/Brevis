@@ -1,0 +1,1 @@
+db.getCollection('articles').find().forEach(function(d){ db.getSiblingDB('brevisTest')['articles'].insert(d); });

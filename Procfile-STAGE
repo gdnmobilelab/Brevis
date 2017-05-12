@@ -1,0 +1,1 @@
+web: ./bin/breviscr -Dconfig.resource=application-stage.conf

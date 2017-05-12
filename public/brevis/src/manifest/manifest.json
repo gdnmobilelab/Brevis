@@ -1,0 +1,25 @@
+{
+  "short_name": "Brevis",
+  "name": "Brevis",
+  "icons": [
+    {
+      "src": "/brevis/app/assets/img/logo-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/brevis/app/assets/img/logo-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/brevis/app/assets/img/logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/brevis/app/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "gcm_sender_id": "103953800507"
+}

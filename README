@@ -1,0 +1,3 @@
+## Build
+
+Command: sbt -Denv=stage buildBrevis

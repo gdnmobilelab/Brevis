@@ -1,0 +1,1 @@
+alter table brevis_user_content_recommendations add column score double precision with values 0;
