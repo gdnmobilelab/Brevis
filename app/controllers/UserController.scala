@@ -2,6 +2,7 @@ package controllers
 
 import com.google.inject.{Inject, Singleton}
 import db.UserDAO
+import io.swagger.annotations.Api
 import models.BrevisUser
 import parsers.CanParseBrevisUserJSON
 import play.api.Logger
@@ -15,6 +16,7 @@ import util.{CommuteRecommendationUtil, CommuteType}
   */
 
 @Singleton
+@Api(value = "/brevis/api/users")
 class UserController @Inject() (
   auth: AuthenticateUser,
   userDAO: UserDAO,

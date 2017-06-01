@@ -1,6 +1,7 @@
 package controllers
 
 import com.google.inject.Inject
+import io.swagger.annotations.Api
 import models.BrevisUserContentMeta
 import parsers.{CanParseBrevisBriefJSON, CanParseBrevisUserContentJSON, CanParseBrevisUserJSON}
 import play.api.cache.{Cache, CacheApi, Cached}
@@ -11,11 +12,14 @@ import play.api.mvc.{Controller, Result}
 import play.api.{Configuration, Logger}
 import play.mvc.Http.Response
 import services.{BrevisBriefService, BrevisUserContentService}
+
 import scala.concurrent.duration._
 
 /**
   * Created by connor.jennings on 4/5/17.
   */
+
+@Api(value = "/brevis/api/user/content")
 class UserContentController @Inject() (
   auth: AuthenticateUser,
   brevisUserContentService: BrevisUserContentService,
@@ -48,7 +52,7 @@ class UserContentController @Inject() (
   }
 
   def content = auth.AuthenticatedUser { request =>
-    cacheAPI.getOrElse("user.content." + request.user.id, 1 minute) {
+//    cacheAPI.getOrElse("user.content." + request.user.id, 0 seconds) {
       val contentsWithProxiedImages = brevisUserContentService.getContentForUser(request.user.id) map { userContent =>
         val content = userContent.content
         val maybeMatchedMainImage = imageMatcher.findAllIn(content.main)
@@ -71,7 +75,12 @@ class UserContentController @Inject() (
 
         val proxifiedImages = (matchedMainImage ++ bodyImages).map(proxifyImages)
 
-        (userContent.copy(content = content.copy(main = proxifyImages(content.main), bodyHtml = proxifyImages(content.bodyHtml))), proxifiedImages)
+        (userContent.copy(
+          content = content.copy(
+            main = proxifyImages(content.main),
+            bodyHtml = proxifyImages(content.bodyHtml),
+            templatedHTML = Some(views.html.Article.article(content).body))),
+          proxifiedImages)
       }
 
       val activeBrief = briefService.getActiveBrief()
@@ -84,7 +93,7 @@ class UserContentController @Inject() (
         "contents" -> Json.toJson(contentsWithProxiedImages.map(_._1)),
         "images" -> Json.toJson(contentsWithProxiedImages.map(_._2))
       )))
-    }
+//    }
   }
 
   def updateMeta = auth.AuthenticatedUser(parse.json) { request =>

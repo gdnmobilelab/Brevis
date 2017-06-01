@@ -21,6 +21,7 @@ trait CanParseBrevisContentJSON extends CanParseBrevisAuthorJSON {
           "main" -> JsString(o.main),
           "bodyHtml" -> JsString(o.bodyHtml),
           "byline" -> JsString(o.byline),
+          "templatedHTML" -> o.templatedHTML.map(f => JsString(f)).getOrElse(JsNull),
           "webPublicationDateISO" -> JsString(o.webPublicationDateISO),
           "webPublicationDateTimestamp" -> JsNumber(o.webPublicationDateTimestamp)
         )

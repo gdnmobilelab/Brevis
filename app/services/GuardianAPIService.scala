@@ -21,6 +21,13 @@ class GuardianAPIService @Inject() (configuration: Configuration) {
                       .showFields("all")
                       .showTags("all")
 
-    client.getResponse(itemQuery)
+    try {
+      // `getResponse` will throw an exception before it creates the Future
+      // if the id we're passing is formatted incorrectly
+      // catch that exception here and return it as a failed future
+      client.getResponse(itemQuery)
+    } catch {
+      case e: Exception => Future.failed(e)
+    }
   }
 }

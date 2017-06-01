@@ -2,6 +2,7 @@ package controllers
 
 import com.google.inject.Inject
 import db.UserPushSubscriptionDAO
+import io.swagger.annotations.Api
 import models.BrevisUserPushSubscription
 import models.dto.BrevisUserPushSubscriptionDTO
 import parsers.CanParseBrevisUserPushSubscriptionJSONDTO
@@ -15,6 +16,8 @@ import scala.concurrent.Future
 /**
   * Created by connor.jennings on 4/20/17.
   */
+
+@Api(value = "/brevis/api/push")
 class PushController @Inject() (
   pushSubscriptionDAO: UserPushSubscriptionDAO,
   auth: AuthenticateUser
@@ -23,7 +26,8 @@ class PushController @Inject() (
   def create = auth.AuthenticatedUser.async(parse.json) { request =>
     request.body.validate[BrevisUserPushSubscriptionDTO] match {
       case json: JsSuccess[BrevisUserPushSubscriptionDTO] =>
-        val pushSubscription = pushSubscriptionDAO.insertPushSubscription(BrevisUserPushSubscription(
+
+        pushSubscriptionDAO.insertPushSubscription(BrevisUserPushSubscription(
           id = None,
           userId = request.user.id,
           pushSubscriptionId = json.value.pushSubscriptionId,

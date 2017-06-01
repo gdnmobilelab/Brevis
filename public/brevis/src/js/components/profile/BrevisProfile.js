@@ -5,6 +5,7 @@ import update from 'immutability-helper';
 
 import BrevisDB from '../../db/BrevisDB';
 
+import BrevisHeader from '../shared/BrevisHeader';
 import BrevisLoading from '../shared/BrevisLoading';
 
 import UserService from '../../services/UserService';
@@ -13,6 +14,14 @@ import NoticesService from '../../services/NoticesService';
 class BrevisProfile extends Component {
     constructor(props) {
         super(props)
+    }
+
+    _showSettings() {
+        const store = this.context.store;
+
+        store.dispatch({
+            type: 'TOGGLE_SETTINGS'
+        })
     }
 
     loadUser() {
@@ -165,7 +174,8 @@ class BrevisProfile extends Component {
         }
 
         return (
-            <div className="profile">
+            <div className="brevis-profile">
+                <BrevisHeader onSettingsButtonClick={this._showSettings.bind(this)} />
                 {toShow}
             </div>
         )

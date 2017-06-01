@@ -21,13 +21,16 @@ libraryDependencies ++= Seq(
 //  "org.apache.logging.log4j" % "log4j-core" % "2.8.1",
 //  "org.apache.logging.log4j" % "log4j-api" % "2.8.1",
 //  "org.apache.logging.log4j" % "log4j-api-scala_2.11" % "2.8.1",
+  "com.fasterxml.jackson.module" % "jackson-modules-java8" % "2.8.8",
+  "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.8.8",
   "org.pac4j" % "pac4j" % "2.0.0-RC2",
   "org.pac4j" % "play-pac4j" % "3.0.0-RC2",
   "org.pac4j" % "pac4j-oauth" % "2.0.0-RC2",
   "com.mohiva" %% "play-html-compressor" % "0.6.3",
   "org.scala-lang.modules" % "scala-java8-compat_2.11" % "0.8.0",
   "com.google.api-client" % "google-api-client" % "1.22.0",
-  "com.google.http-client" % "google-http-client" % "1.22.0"
+  "com.google.http-client" % "google-http-client" % "1.22.0",
+  "io.swagger" % "swagger-play2_2.11" % "1.5.3"
 )
 
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.1"

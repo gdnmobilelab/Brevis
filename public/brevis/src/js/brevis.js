@@ -8,9 +8,6 @@ import ZingTouch from 'zingtouch';
 
 const browserHistory = createHashHistory();
 
-import registerServiceWorker from './util/register-service-worker';
-import messaging from './util/firebase-messaging';
-
 import store from './store';
 import BrevisDB from './db/BrevisDB';
 
@@ -30,32 +27,12 @@ import PushService from './services/PushService';
 
 import sendMessage from './util/service-worker-send-message';
 import refreshContent from './util/refresh-content';
+import registerServiceWorker from './util/register-service-worker';
 
 registerServiceWorker()
-    .then((registration) => {
-        messaging.useServiceWorker(registration);
-
-        messaging.requestPermission()
-            .catch(function(err) {
-                console.log('Unable to get permission to notify.', err);
-            })
-            .then(() => {
-                messaging.getToken()
-                    .then((token) => {
-                        console.log(`Push Token: ${token}`);
-                        PushService.savePushToken(token);
-                    });
-            });
-
-        messaging.onTokenRefresh(() => {
-            console.log(`Refresh Push Token`);
-            messaging.getToken()
-                .then((token) => {
-                    console.log(`Push Token: ${token}`);
-                    PushService.savePushToken(token);
-                });
-        })
-    });
+    .catch((err) => {
+        console.log(err);
+    })
 
 window.addEventListener('online', () => {
     // Todo: race condition.
@@ -179,15 +156,12 @@ class App extends Component {
 
         return (
             <div>
-                <BrevisHeader onSettingsButtonClick={this.showSettings.bind(this)} />
                 <div className={wrapperClass}>
                     <BrevisSettings
                         onLogout={this.onLogout.bind(this)}
                         onClick={this.onSettingsClick.bind(this)}
                     />
-                    <div className="main">
-                        {this.props.children}
-                    </div>
+                    {this.props.children}
                 </div>
                 <BrevisNotices />
             </div>

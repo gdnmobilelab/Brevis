@@ -18,6 +18,8 @@ case class BrevisUser(
   externalId: String,
   accountType: BrevisUserAccountType,
   email: Option[String],
+  firstName: String,
+  lastName: String,
   morningCommuteLength: Int,
   eveningCommuteLength: Int,
   morningCommuteStart: LocalTime,
@@ -27,13 +29,15 @@ case class BrevisUser(
 object BrevisUser {
   // Exists for java-interop
   def apply(id: String, externalId: String, accountType: BrevisUserAccountType,
-    email: String, morningCommuteLength: Int, eveningCommuteLength: Int,
+    email: String, firstName: String, lastName: String, morningCommuteLength: Int, eveningCommuteLength: Int,
     morningCommuteStart: LocalTime): BrevisUser = {
       BrevisUser(
         id = id,
         externalId = externalId,
         accountType = accountType,
         email = if (email.isEmpty) { None } else { Some(email) },
+        firstName = firstName,
+        lastName = lastName,
         morningCommuteLength = morningCommuteLength,
         eveningCommuteLength = eveningCommuteLength,
         morningCommuteStart = morningCommuteStart,

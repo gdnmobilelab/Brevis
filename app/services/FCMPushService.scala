@@ -32,6 +32,7 @@ class FCMPushService @Inject() (
   }
 
   def sendNotification(pushNotification: PushNotification): Future[Boolean] = {
+    Logger.debug(s"Sending push notificaiton to: ${pushNotification.to}")
     ws.url("https://fcm.googleapis.com/fcm/send")
       .withHeaders(
         ("Authorization", s"key=$key"),

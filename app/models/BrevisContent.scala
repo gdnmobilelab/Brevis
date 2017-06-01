@@ -61,6 +61,7 @@ case class BrevisContent (
   bodyHtml: String,
   wordCount: Int,
   productionOffice: String,
+  templatedHTML: Option[String] = None,
   similarContent: Seq[BrevisSimilarContent] = Nil
 )
 

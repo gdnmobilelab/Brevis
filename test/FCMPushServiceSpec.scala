@@ -30,7 +30,7 @@ class FCMPushServiceSpec extends AsyncFlatSpec with Matchers {
       )
       val result = Await.result(
         new FCMPushService(client, new UserPushSubscriptionDAO(database), application.configuration).sendNotification(NewBriefNotification(
-          to = "dVlK9CWTdH4:APA91bEyeHIUvWlT3mBQQAisQDRmjjsgQnm79zOET_6onHJhcJs9Ja6nZCM2WEutYHCalML7XF1h8RKUuVFHPwRYf0PxWI_DHNr3rsNQ_O-XS78EM1oaf1C5eGkeEHyPIGUgq8f3QbAU",
+          to = "c19dQahcAvo:APA91bGby1Hcvx6mhJrYwzm6raC-KE6DhG1m6Ht3H8trCpdEm1nzogBM9xx7XSdzaPoWxa4UiyghHVHNU__brtUV4OPiPQYjPN8mvNIU5_yu4x8IyIUykh45jYxpq87yuBGNJJndeZmC",
           title = "Test title",
           body = "Test body",
           url = "http://test"
@@ -40,25 +40,25 @@ class FCMPushServiceSpec extends AsyncFlatSpec with Matchers {
     }
   }
 
-  "notifyNewBrief" should "send a new brief notification" in {
-    WsTestClient.withClient { client =>
-      val application = new GuiceApplicationBuilder().build()
-
-
-      val apiSerivce = new GuardianAPIService(application.configuration)
-      val database = Databases(
-        "org.postgresql.Driver",
-        "jdbc:postgresql://127.0.0.1/brevis",
-        "brevis",
-        Map(
-          "user" -> "postgres"
-        )
-      )
-      val result = Await.result(
-        new FCMPushService(client, new UserPushSubscriptionDAO(database), application.configuration).notifyNewBrief(), 10.seconds)
-
-      assert(true === true)
-    }
-  }
+//  "notifyNewBrief" should "send a new brief notification" in {
+//    WsTestClient.withClient { client =>
+//      val application = new GuiceApplicationBuilder().build()
+//
+//
+//      val apiSerivce = new GuardianAPIService(application.configuration)
+//      val database = Databases(
+//        "org.postgresql.Driver",
+//        "jdbc:postgresql://127.0.0.1/brevis",
+//        "brevis",
+//        Map(
+//          "user" -> "postgres"
+//        )
+//      )
+//      val result = Await.result(
+//        new FCMPushService(client, new UserPushSubscriptionDAO(database), application.configuration).notifyNewBrief(), 10.seconds)
+//
+//      assert(true === true)
+//    }
+//  }
 
 }

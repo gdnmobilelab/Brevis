@@ -8,8 +8,6 @@ const browserHistory = createHashHistory();
 
 import store from './store';
 
-import BrevisHeader from './components/shared/BrevisHeader';
-
 class BrevisLogin extends Component {
     componentDidMount() {
         store.dispatch({
@@ -19,12 +17,14 @@ class BrevisLogin extends Component {
 
     render() {
         return (
-            <div>
-                <BrevisHeader />
-                <div className="brevis-wrapper">
-                    <div className="main text-center">
-                        <a className="btn" href="/brevis/app/?login=true">Login with Google</a>
-                    </div>
+            <div className="brevis-login login-outer-wrapper">
+                <div className="brevis-login login-header-wrapper">
+                    <div className="brevis-login login-header">Brevis</div>
+                    <div className="brevis-login login-body">By The Guardian Mobile Innovation Lab</div>
+                    <div className="brevis-login login-body">Brevis is a smart news app that learns what you like to read and delivers you articles every day for your commute.</div>
+                </div>
+                <div className="brevis-login login-button-wrapper">
+                    <a href="/brevis/app/?login=true" className="brevis-login login-button">Login w/ Google</a>
                 </div>
             </div>
         )

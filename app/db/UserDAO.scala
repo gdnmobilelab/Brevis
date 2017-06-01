@@ -19,17 +19,21 @@ class UserDAO @Inject() (db: Database) {
       str("brevis_user_externalId") ~
       str("brevis_user_accountType") ~
       get[Option[String]]("brevis_user_email") ~
-      int("brevis_morningCommuteLength") ~
-      int("brevis_eveningCommuteLength") ~
-      get[LocalTime]("brevis_morningCommuteStart") ~
-      get[Option[LocalTime]]("brevis_eveningCommuteStart") map {
+      str("brevis_user_firstName") ~
+      str("brevis_user_lastName") ~
+      int("brevis_user_morningCommuteLength") ~
+      int("brevis_user_eveningCommuteLength") ~
+      get[LocalTime]("brevis_user_morningCommuteStart") ~
+      get[Option[LocalTime]]("brevis_user_eveningCommuteStart") map {
       case
-        id ~ externalId ~ accountType ~ email ~ morningCommuteLength
+        id ~ externalId ~ accountType ~ email ~ firstName ~ lastName ~ morningCommuteLength
           ~ eveningCommuteLength ~ morningCommuteStart ~ eveningCommuteStart =>
         BrevisUser(
           id = id,
           externalId = externalId,
           email = email,
+          firstName = firstName,
+          lastName = lastName,
           accountType = BrevisUserAccountType.withName(accountType),
           morningCommuteLength = morningCommuteLength,
           eveningCommuteLength = eveningCommuteLength,
@@ -61,6 +65,8 @@ class UserDAO @Inject() (db: Database) {
           {id},
           {externalId},
           {email},
+          {firstName},
+          {lastName},
           {accountType},
           {morningCommuteLength},
           {eveningCommuteLength},
@@ -70,6 +76,8 @@ class UserDAO @Inject() (db: Database) {
         'id -> brevisUser.id,
         'externalId -> brevisUser.externalId,
         'email -> brevisUser.email,
+        'firstName -> brevisUser.firstName,
+        'lastName -> brevisUser.lastName,
         'accountType -> brevisUser.accountType.toString,
         'morningCommuteLength -> brevisUser.morningCommuteLength,
         'eveningCommuteLength -> brevisUser.eveningCommuteLength,

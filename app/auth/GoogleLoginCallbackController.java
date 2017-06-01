@@ -3,6 +3,8 @@ package auth;
 import akka.util.ByteString;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.apache.ApacheHttpTransport;
@@ -38,6 +40,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
@@ -119,6 +122,8 @@ public class GoogleLoginCallbackController extends CallbackController {
 
             GoogleIdToken.Payload payload = idToken.getPayload();
             ObjectMapper objMapper = new ObjectMapper();
+            objMapper.findAndRegisterModules();
+
             Google2ProfileDefinition googleProfile = new Google2ProfileDefinition();
             payload.set("id", "org.pac4j.oauth.profile.google2.Google2Profile#" + payload.getSubject());
 
@@ -131,7 +136,9 @@ public class GoogleLoginCallbackController extends CallbackController {
                         UUID.randomUUID().toString(),
                         profile.getTypedId(),
                         BrevisUserAccountType.GOOGLE(),
-                        profile.getEmail(),
+                        profile.getEmail() != null ? profile.getEmail() : (String)profile.getAttribute("email"),
+                        profile.getFirstName(),
+                        profile.getFamilyName(),
                         30,
                         30,
                         LocalTime.of(8, 30)));
@@ -147,13 +154,32 @@ public class GoogleLoginCallbackController extends CallbackController {
                         newBrevisUser
                 ));
 
+                Map<String, Object> newUserAsMap = new HashMap<>();
+
+                // Todo: this will cause trouble
+                newUserAsMap.put("id", newBrevisUser.id());
+                newUserAsMap.put("externalId", newBrevisUser.externalId());
+                newUserAsMap.put("accountType", newBrevisUser.accountType().toString());
+                newUserAsMap.put("email", newBrevisUser.email().isDefined() ? newBrevisUser.email().get() : null);
+                newUserAsMap.put("morningCommuteLength", newBrevisUser.morningCommuteLength());
+                newUserAsMap.put("eveningCommuteLength", newBrevisUser.eveningCommuteLength());
+                newUserAsMap.put("morningCommuteStart", newBrevisUser.morningCommuteStart().format(DateTimeFormatter.ofPattern("hh:mm")));
+                newUserAsMap.put("eveningCommuteStart", newBrevisUser.eveningCommuteStart().isDefined() ? newBrevisUser.eveningCommuteStart().get().format(DateTimeFormatter.ofPattern("hh:mm")) : null);
+
+                respBody.put("newUser", newUserAsMap);
                 saveUserProfile(context, config, profile, multiProfile, renewSession);
             } else {
                 saveUserProfile(context, config, profile, multiProfile, renewSession);
             }
 
             status = 200;
-            respBody.put("sessionId", context.getSessionStore().getTrackableSession(context));
+
+            String sessionId = (String) context.getSessionStore().getOrCreateSessionId(context);
+            if (sessionId == null) {
+                throw new Exception("SessionId is null");
+            }
+
+            respBody.put("sessionId", sessionId);
         } catch (Exception e) {
             respBody.put("failed", true);
             status = 400;
@@ -226,6 +252,8 @@ public class GoogleLoginCallbackController extends CallbackController {
                         profile.getTypedId(),
                         BrevisUserAccountType.GOOGLE(),
                         profile.getEmail(),
+                        profile.getFirstName(),
+                        profile.getFamilyName(),
                         30,
                         30,
                         LocalTime.of(8, 30)));

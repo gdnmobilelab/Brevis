@@ -68,6 +68,8 @@ create table if not exists brevis_users (
   externalId VARCHAR(255),
   accountType ACCOUNT_TYPE,
   email TEXT,
+  firstName TEXT,
+  lastName TEXT,
   morningCommuteLength INT DEFAULT 30 NOT NULL,
   eveningCommuteLength INT DEFAULT 30 NOT NULL,
   morningCommuteStart TIME WITHOUT TIME ZONE,

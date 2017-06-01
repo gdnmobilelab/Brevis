@@ -102,7 +102,7 @@ function checkCacheAndMaybeFetch(request) {
 
             // This will lazily evict the cache
             if (response) {
-                // setTimeout(() => fetchAndCache(clonedRequest, response), 0);
+                setTimeout(() => fetchAndCache(clonedRequest, response), 0);
                 console.timeEnd('checkCacheAndMaybeFetch');
                 return response;
             } else {

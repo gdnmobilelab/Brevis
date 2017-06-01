@@ -138,11 +138,63 @@
                 width: 50%;
             }
 
+    /** Brevis Shared **/
+        .brevis-brief,
+        .brevis-profile,
+        .brevis-content {
+            margin-top: 60px;
+            padding: 10px;
+            flex-grow: 1;
+        }
+
     /** Brevis Wrapper **/
     .brevis-wrapper {
         display: flex;
         min-height: 100%;
     }
+
+        /** Brevis Login **/
+        .brevis-login.login-outer-wrapper {
+            background-color: rgba(233, 240, 243, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .brevis-login.login-header-wrapper {
+            text-align: center;
+            margin-top: 50px;
+            padding: 0 50px;
+        }
+
+        .brevis-login.login-button-wrapper {
+            margin-top: auto;
+            background-color: rgba(74,144,226,1);
+            display: block;
+            border: none;
+            font-size: 30px;
+            padding: 20px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .brevis-login.login-button {
+            text-decoration: none;
+            color: white;
+        }
+
+        .brevis-login.login-header {
+            font-size: 28px;
+            font-weight: 100
+        }
+
+        .brevis-login.login-body {
+            font-size: 16px;
+            font-weight: 300;
+            margin-top: 20px;
+            line-height: 22px;
+        }
+
 
         /** Brevis Settings **/
         .brevis-wrapper > .settings {
@@ -341,51 +393,6 @@
                 box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
             }
 
-    /**** Content ****/
-        .content-item .gu-image {
-            width: 100%;
-            height: auto
-        }
-
-        .content-item figure {
-            margin: 0
-        }
-
-        .content-item figure figcaption {
-            margin-top: 5px;
-            font-size: 14px;
-            color: #ccc;
-        }
-
-        .content-item iframe {
-            width: 100% !important; /* Marked important to get around Youtube setting style */
-        }
-
-        .content-item .element-video video {
-            width: 100%;
-        }
-
-        .content-item p {
-            line-height: 22px;
-            margin: 15px 0;
-        }
-
-        .content-item a {
-            color: #005689;
-            text-decoration: none;
-            border-bottom: 0.0625rem solid #dcdcdc
-        }
-
-        .content-item .byline {
-            margin-top: 15px;
-            color: #767676;
-            font-size: 18px;
-        }
-
-        .content-item ul li {
-            margin-bottom: 15px;
-        }
-
 /* Form */
     .form .submit {
         margin-top: 10px;
@@ -452,6 +459,274 @@
                 border-bottom: 1px solid #008744;
                 box-shadow: 0 1px 0 0 #008744;
             }
+
+    /** Onboarding **/
+
+        .brevis-onboarding-global.onboarding-header {
+            font-size: 28px;
+            font-weight: 100
+        }
+
+        .brevis-onboarding-global.onboarding-body {
+            font-size: 16px;
+            font-weight: 300;
+            margin-top: 20px;
+            line-height: 22px;
+        }
+
+        .brevis-onboarding-global.onboarding-header-spacer {
+            display: flex;
+            flex: 0.03;
+            background-color: rgba(233, 240, 243, 1);
+        }
+
+        .brevis-onboarding-global.onboarding-navigation-next-button-wrapper {
+            margin-bottom: 40px;
+        }
+
+        .brevis-onboarding-global.onboarding-navigation-next-button {
+            text-decoration: none;
+            color: rgba(113, 175, 234, 1);
+            font-size: 24px;
+        }
+
+        .brevis-onboarding-global.onboarding-navigation-dot-text {
+            color: rgba(200, 199, 195, 1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .brevis-onboarding-global.onboarding-navigation-dots {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 20px;
+        }
+
+        .brevis-onboarding-global.onboarding-navigation-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            background-color: rgba(216, 216, 216, 1);
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        .brevis-onboarding-global.onboarding-navigation-active-dot {
+            background-color: rgba(74, 144, 226, 1);
+        }
+
+        /** Onboarding Carousel **/
+        .brevis-onboarding.onboarding-slides {
+            overflow: hidden;
+            display: flex;
+            width: 100%;
+        }
+
+        .brevis-onboarding.onboarding-slide {
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            flex: 1 0 100%;
+        }
+
+        /** Onboarding Start **/
+            .brevis-onboarding-start.onboarding-outer-wrapper {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(233, 240, 243, 1);
+            }
+
+            .brevis-onboarding-start.onboarding-inner-wrapper {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                padding: 20px;
+                margin-top: 50px;
+            }
+
+            .brevis-onboarding-start.onboarding-button-wrapper {
+                margin-top: auto;
+                justify-content: center;
+                /*background-color: rgba(74, 144, 226, 1);*/
+                /*text-align: center;*/
+            }
+
+            .brevis-onboarding-start.start-button {
+                background-color: rgba(74,144,226,1);
+                border: none;
+                font-size: 30px;
+                color: white;
+                padding: 20px;
+                width: 100%;
+                cursor: pointer;
+            }
+
+        /** Onboarding Time **/
+            .brevis-onboarding-time.onboarding-outer-wrapper {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                flex-direction: column;
+            }
+
+            .brevis-onboarding-time.onboarding-inner-wrapper {
+                flex: 0.97;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .brevis-onboarding-time.onboarding-header-wrapper {
+                padding: 20px;
+                text-align: center;
+            }
+
+            .brevis-onboarding-time.onboarding-header {
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            .brevis-onboarding-time.onboarding-body {
+                font-weight: 100;
+                margin-top: 10px;
+            }
+
+            .brevis-onboarding-time.onboarding-timebox-wrapper {
+                padding: 20px;
+            }
+
+            .brevis-onboarding-time.onboarding-timebox {
+                border-radius: 5px;
+                border: 1px solid #333;
+            }
+
+            .brevis-onboarding-time.onboarding-timebox-row {
+                display: flex;
+                flex-direction: row;
+                height: 100px;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .brevis-onboarding-time.onboarding-timebox-row-item {
+                margin: 0 15px 0 15px;
+            }
+
+            .brevis-onboarding-time.onboarding-timebox-button {
+                background-color: rgba(200, 199, 195, 1);
+                padding: 15px;
+            }
+
+            .brevis-onboarding-time.onboarding-timebox-button svg {
+                background-color: rgba(200, 199, 195, 1);
+                width: 24px;
+                height: 24px;
+            }
+
+            .brevis-onboarding-time.onboarding-time-helper-text {
+                text-align: center;
+                font-size: 14px;
+                color: rgba(200, 199, 195, 1);
+                margin-top: 20px;
+            }
+
+            .brevis-onboarding-time.onboarding-navigation {
+                margin-top: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+        /** Onboarding Notifications **/
+            .brevis-onboarding-notifications.onboarding-outer-wrapper,
+            .brevis-onboarding-location.onboarding-outer-wrapper {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                flex-direction: column;
+            }
+
+            .brevis-onboarding-notifications.onboarding-inner-wrapper,
+            .brevis-onboarding-location.onboarding-inner-wrapper {
+                flex: 0.97;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .brevis-onboarding-notifications.onboarding-header-wrapper,
+            .brevis-onboarding-location.onboarding-header-wrapper {
+                padding: 20px;
+                text-align: center;
+            }
+
+            .brevis-onboarding-notifications.onboarding-header,
+            .brevis-onboarding-location.onboarding-header {
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            .brevis-onboarding-notifications.onboarding-body,
+            .brevis-onboarding-location.onboarding-body {
+                font-weight: 100;
+                margin-top: 10px;
+            }
+
+            .brevis-onboarding-notifications.onboarding-enable-notifications-text-wrapper,
+            .brevis-onboarding-location.onboarding-enable-location-text-wrapper {
+                padding: 20px;
+                text-align: center;
+                margin-top: auto;
+            }
+
+            .brevis-onboarding-notifications.onboarding-enable-notifications-text,
+            .brevis-onboarding-location.onboarding-enable-location-text {
+                text-decoration: none;
+                color: rgba(113, 175, 234, 1);
+                font-size: 26px;
+            }
+
+            .brevis-onboarding-notifications.onboarding-notifications-helper-text,
+            .brevis-onboarding-location.onboarding-location-helper-text {
+                font-size: 14px;
+                color: rgba(200, 199, 195, 1);
+                margin-top: 10px;
+            }
+
+            .brevis-onboarding-notifications.onboarding-navigation,
+            .brevis-onboarding-location.onboarding-navigation {
+                margin-top: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+
+        /** Onboarding Finish **/
+            .brevis-onboarding-finish.onboarding-outer-wrapper {
+                display: flex;
+            }
+
+            .brevis-onboarding-finish.onboarding-inner-wrapper {
+                margin: 20px;
+            }
+
+            .brevis-onboarding-finish.onboarding-text-wrapper {
+                background-color: rgba(233, 240, 243, 1);
+                padding: 50px;
+                text-align: center;
+            }
+
+            .brevis-onboarding-finish.onboarding-finish-button {
+                background-color: rgba(74,144,226,1);
+                border: none;
+                font-size: 30px;
+                color: white;
+                padding: 20px;
+                width: 100%;
+                cursor: pointer;
+            }
+
 /* Progress */
 .progress {
     position: relative;

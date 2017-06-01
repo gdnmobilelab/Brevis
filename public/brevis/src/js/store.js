@@ -1,7 +1,6 @@
 import { createStore } from 'redux';
 import update from './util/update-ext';
 
-
 const initialState = {
     loading: false,
     userContent: [],
@@ -20,15 +19,14 @@ const initialState = {
     notices: {
         map: {}
     },
+    onboarding: {
+        morningCommuteLength: 30,
+        eveningCommuteLength: 30
+    },
     pages: {
         brief: {},
         content: {
             current: {}
-        },
-        onboarding: {
-            form: {
-                commuteLength: 30
-            }
         },
         profile: {
             form: {}
@@ -167,12 +165,16 @@ export default createStore(function(state = initialState, action) {
                     showMenu: { $set: false }
                 }
             });
-        case 'UPDATE_ONBOARDING_FORM':
+        case 'SET_MORNING_COMMUTE_LENGTH':
             return update(state, {
-                pages: {
-                    onboarding: {
-                        form: { $set: action.form }
-                    }
+                onboarding: {
+                    morningCommuteLength: { $set: action.morningCommuteLength }
+                }
+            });
+        case 'SET_EVENING_COMMUTE_LENGTH':
+            return update(state, {
+                onboarding: {
+                    eveningCommuteLength: { $set: action.eveningCommuteLength }
                 }
             });
         case 'ONBOARDING_SAVE_REQUEST':

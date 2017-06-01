@@ -6,6 +6,7 @@ import classnames from 'classnames';
 
 import BrevisDB from '../../db/BrevisDB';
 
+import BrevisHeader from '../shared/BrevisHeader';
 import BrevisContentCard from './BrevisContentCard';
 import BrevisContentCardLoading from './BrevisContentCardLoading';
 
@@ -18,6 +19,14 @@ import '../../polyfills/find';
 class BrevisBrief extends Component {
     constructor(props) {
         super(props);
+    }
+
+    _showSettings() {
+        const store = this.context.store;
+
+        store.dispatch({
+            type: 'TOGGLE_SETTINGS'
+        })
     }
 
     onContentClick(id) {
@@ -154,7 +163,8 @@ class BrevisBrief extends Component {
         }
 
         return (
-            <div>
+            <div className="brevis-brief">
+                <BrevisHeader onSettingsButtonClick={this._showSettings.bind(this)} />
                 <div className="content-list">
                     {toShow}
                 </div>

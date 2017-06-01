@@ -1,0 +1,90 @@
+@(content: BrevisContent)
+
+<html>
+    <head>
+        <style>
+            html {
+                font-family: Helvetica,Arial,sans-serif;
+                color: #333;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            .element-image {
+                margin: 0 0 10px 0;
+            }
+
+            .element-image img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            figcaption {
+                margin-top: 5px;
+                font-size: 14px;
+                color: #ccc;
+            }
+
+            .content-item .title h2 {
+                margin-top: 0;
+            }
+
+            .content-item .gu-image {
+                width: 100%;
+                height: auto
+            }
+
+            .content-item figure {
+                margin: 0
+            }
+
+            .content-item figure figcaption {
+                margin-top: 5px;
+                font-size: 14px;
+                color: #ccc;
+            }
+
+            .content-item iframe {
+                width: 100% !important; /* Marked important to get around Youtube setting style */
+            }
+
+            .content-item .element-video video {
+                width: 100%;
+            }
+
+            .content-item p {
+                line-height: 22px;
+                margin: 15px 0;
+            }
+
+            .content-item a {
+                color: #005689;
+                text-decoration: none;
+                border-bottom: 0.0625rem solid #dcdcdc
+            }
+
+            .content-item .byline {
+                margin-top: 15px;
+                color: #767676;
+                font-size: 18px;
+            }
+
+            .content-item ul li {
+                margin-bottom: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content-item">
+            <div class="title"><h2>@content.headline</h2></div>
+            <div class="content-main">
+                @Html(content.main)
+            </div>
+            <div class="byline">
+                @content.byline
+            </div>
+            <div class="body">
+                @Html(content.bodyHtml)
+            </div>
+        </div>
+    </body>
+</html>

@@ -4,6 +4,7 @@ import java.time.Instant
 import java.time.format.DateTimeFormatter
 
 import com.google.inject.Inject
+import io.swagger.annotations.{Api, ApiImplicitParam, ApiImplicitParams, ApiResponses}
 import models.dto.{ContentReadObservationDTO, LocationObservationDTO}
 import models.{BrevisUserContentClick, BrevisUserLocation}
 import parsers.{CanParseContentReadObservationDTOJSON, CanParseLocationObservationDTOJSON}
@@ -19,6 +20,7 @@ import scala.concurrent.Future
   * Created by connor.jennings on 3/23/17.
   */
 
+@Api(value = "/brevis/api/observations")
 class ObservationsController @Inject() (
   brevisObservationService: BrevisObservationService,
   reverseGeocodeService: ReverseGeocodeService,

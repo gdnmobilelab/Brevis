@@ -17,8 +17,8 @@ class BrevisContentCard extends Component {
         let region = this.context.touchRegion;
 
         let detect = new ZingTouch.Swipe({
-            escapeVelocity: 0.05,
-            maxRestTime: 150
+            // escapeVelocity: 0.05,
+            // maxRestTime: 150
         });
 
         region.bind(el, detect, (e) => {

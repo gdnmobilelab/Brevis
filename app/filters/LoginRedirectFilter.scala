@@ -38,7 +38,8 @@ class LoginRedirectFilter @Inject() (mat: Materializer, configuration: Configura
           && profiles == null
           && request.headers.toSimpleMap.get("X-Brevis-Session").isEmpty
           && request.getQueryString("login").isEmpty
-          && !request.path.contains("/brevis/app/callback")) {
+          && !request.path.contains("/brevis/app/callback")
+          && !request.path.contains("/brevis/api/briefs/daily-email")) {
           Future.successful(Redirect("/brevis/app/login/"))
         } else {
           nextFilter(request)

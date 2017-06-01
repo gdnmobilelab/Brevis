@@ -1,3 +1,8 @@
+DROP FUNCTION p_getbrevisuser(character varying);
+DROP FUNCTION p_getbrevisuserbyexternalid(character varying);
+DROP FUNCTION p_getbrevisusers();
+DROP FUNCTION p_updatebrevisuser(character varying,integer,integer,time without time zone,time without time zone);
+
 create or replace function p_AddBrevisContentToBrief(
   IN p_contentId VARCHAR(36),
   IN p_briefId VARCHAR(36)
@@ -296,11 +301,13 @@ LANGUAGE sql;create or replace function p_GetBrevisUser(
     brevis_user_userId VARCHAR(36),
     brevis_user_externalId VARCHAR(255),
     brevis_user_email TEXT,
+    brevis_user_firstName TEXT,
+    brevis_user_lastName TEXT,
     brevis_user_accountType ACCOUNT_TYPE,
-    brevis_morningCommuteLength INT,
-    brevis_eveningCommuteLength INT,
-    brevis_morningCommuteStart TIME,
-    brevis_eveningCommuteStart TIME
+    brevis_user_morningCommuteLength INT,
+    brevis_user_eveningCommuteLength INT,
+    brevis_user_morningCommuteStart TIME,
+    brevis_user_eveningCommuteStart TIME
   ) AS
 $BODY$
 
@@ -308,6 +315,8 @@ $BODY$
     id,
     externalId,
     email,
+    firstName,
+    lastName,
     accountType,
     morningCommuteLength,
     eveningCommuteLength,
@@ -324,11 +333,13 @@ LANGUAGE sql;create or replace function p_GetBrevisUserByExternalId(
     brevis_user_userId VARCHAR(36),
     brevis_user_externalId VARCHAR(255),
     brevis_user_email TEXT,
+    brevis_user_firstName TEXT,
+    brevis_user_lastName TEXT,
     brevis_user_accountType ACCOUNT_TYPE,
-    brevis_morningCommuteLength INT,
-    brevis_eveningCommuteLength INT,
-    brevis_morningCommuteStart TIME,
-    brevis_eveningCommuteStart TIME
+    brevis_user_morningCommuteLength INT,
+    brevis_user_eveningCommuteLength INT,
+    brevis_user_morningCommuteStart TIME,
+    brevis_user_eveningCommuteStart TIME
   ) AS
 $BODY$
 
@@ -336,6 +347,8 @@ $BODY$
     id,
     externalId,
     email,
+    firstName,
+    lastName,
     accountType,
     morningCommuteLength,
     eveningCommuteLength,
@@ -389,40 +402,13 @@ LANGUAGE sql;create or replace function p_GetBrevisUsers()
     brevis_user_userId VARCHAR(36),
     brevis_user_externalId VARCHAR(255),
     brevis_user_email TEXT,
+    brevis_user_firstName TEXT,
+    brevis_user_lastName TEXT,
     brevis_user_accountType ACCOUNT_TYPE,
-    brevis_morningCommuteLength INT,
-    brevis_eveningCommuteLength INT,
-    brevis_morningCommuteStart TIME,
-    brevis_eveningCommuteStart TIME
-  ) AS
-$BODY$
-
-  select
-    id,
-    externalId,
-    email,
-    accountType,
-    morningCommuteLength,
-    eveningCommuteLength,
-    morningCommuteStart,
-    eveningCommuteStart
-  from brevis_users;
-
-
-$BODY$
-LANGUAGE sql;
-
-DROP FUNCTION p_getbrevisusers();
-create or replace function p_GetBrevisUsers()
-  returns table(
-    brevis_user_userId VARCHAR(36),
-    brevis_user_externalId VARCHAR(255),
-    brevis_user_email TEXT,
-    brevis_user_accountType ACCOUNT_TYPE,
-    brevis_morningCommuteLength INT,
-    brevis_eveningCommuteLength INT,
-    brevis_morningCommuteStart TIME,
-    brevis_eveningCommuteStart TIME
+    brevis_user_morningCommuteLength INT,
+    brevis_user_eveningCommuteLength INT,
+    brevis_user_morningCommuteStart TIME,
+    brevis_user_eveningCommuteStart TIME
   ) AS
 $BODY$
 
@@ -430,6 +416,8 @@ select
   id,
   externalId,
   email,
+  firstName,
+  lastName,
   accountType,
   morningCommuteLength,
   eveningCommuteLength,
@@ -657,6 +645,8 @@ LANGUAGE sql;create or replace function p_InsertBrevisUser(
   IN p_userId VARCHAR(36),
   IN p_externalId VARCHAR(255),
   IN p_email TEXT,
+  IN p_firstName TEXT,
+  IN p_lastName TEXT,
   IN p_accountType VARCHAR(255),
   IN p_morningCommuteLength INT,
   IN p_eveningCommuteLength INT,
@@ -667,11 +657,13 @@ LANGUAGE sql;create or replace function p_InsertBrevisUser(
     brevis_user_userId VARCHAR(36),
     brevis_user_externalId VARCHAR(255),
     brevis_user_email TEXT,
+    brevis_user_firstName TEXT,
+    brevis_user_lastName TEXT,
     brevis_user_accountType ACCOUNT_TYPE,
-    brevis_morningCommuteLength INT,
-    brevis_eveningCommuteLength INT,
-    brevis_morningCommuteStart TIME,
-    brevis_eveningCommuteStart TIME
+    brevis_user_morningCommuteLength INT,
+    brevis_user_eveningCommuteLength INT,
+    brevis_user_morningCommuteStart TIME,
+    brevis_user_eveningCommuteStart TIME
   ) AS
 $BODY$
 
@@ -680,6 +672,8 @@ insert into
     id,
     externalId,
     email,
+    firstName,
+    lastName,
     accountType,
     morningCommuteLength,
     eveningCommuteLength,
@@ -689,6 +683,8 @@ insert into
   p_userId,
   p_externalId,
   p_email,
+  p_firstName,
+  p_lastName,
   p_accountType::ACCOUNT_TYPE,
   p_morningCommuteLength,
   p_eveningCommuteLength,
@@ -699,6 +695,8 @@ returning
   id,
   externalId,
   email,
+  firstName,
+  lastName,
   accountType,
   morningCommuteLength,
   eveningCommuteLength,
@@ -919,11 +917,13 @@ LANGUAGE sql;create or replace function p_UpdateBrevisUser(
     brevis_user_userId VARCHAR(36),
     brevis_user_externalId VARCHAR(255),
     brevis_user_email TEXT,
+    brevis_user_firstName TEXT,
+    brevis_user_lastName TEXT,
     brevis_user_accountType ACCOUNT_TYPE,
-    brevis_morningCommuteLength INT,
-    brevis_eveningCommuteLength INT,
-    brevis_morningCommuteStart TIME,
-    brevis_eveningCommuteStart TIME
+    brevis_user_morningCommuteLength INT,
+    brevis_user_eveningCommuteLength INT,
+    brevis_user_morningCommuteStart TIME,
+    brevis_user_eveningCommuteStart TIME
   ) AS
 $BODY$
 
@@ -938,6 +938,8 @@ $BODY$
       id,
       externalId,
       email,
+      firstName,
+      lastName,
       accountType,
       morningCommuteLength,
       eveningCommuteLength,
