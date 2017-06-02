@@ -16,6 +16,10 @@ class PushService {
                 // })
             })
     }
+
+    haveUserPermission() {
+        return Notification.permission === "granted";
+    }
 }
 
 export default new PushService();

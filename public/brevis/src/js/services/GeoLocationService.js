@@ -26,6 +26,12 @@ class GeoLocationService {
             });
         });
     }
+
+    haveUserPermission() {
+        return navigator.permissions.query({name:'geolocation'}).then(function(result) {
+            return result.state === 'granted';
+        });
+    }
 }
 
 export default new GeoLocationService();

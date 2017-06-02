@@ -189,6 +189,18 @@ class BrevisOnboardingNotifications extends Component {
     }
 
     render() {
+        let notificationStatusToShow = PushService.haveUserPermission() ? (
+            <div>
+                <div className="brevis-onboarding-notifications onboarding-notifications-enabled-text">Notifications are enabled.</div>
+                <div className="brevis-onboarding-notifications onboarding-notifications-helper-text">You can always change this later</div>
+            </div>
+        ) : (
+            <div>
+                <a onClick={this._requestNotificationPermission.bind(this)} href="javascirpt:void(0)" className="brevis-onboarding-notifications onboarding-enable-notifications-text">Enable Notifications</a>
+                <div className="brevis-onboarding-notifications onboarding-notifications-helper-text">You can always change this later</div>
+            </div>
+        );
+
         return (
             <div className="brevis-onboarding-notifications onboarding-outer-wrapper">
                 <div className="brevis-onboarding-global onboarding-header-spacer"></div>
@@ -199,8 +211,7 @@ class BrevisOnboardingNotifications extends Component {
                     </div>
 
                     <div className="brevis-onboarding-notifications onboarding-enable-notifications-text-wrapper">
-                        <a onClick={this._requestNotificationPermission.bind(this)} href="javascirpt:void(0)" className="brevis-onboarding-notifications onboarding-enable-notifications-text">Enable Notifications</a>
-                        <div className="brevis-onboarding-notifications onboarding-notifications-helper-text">You can always change this later</div>
+                        {notificationStatusToShow}
                     </div>
 
                     <div className="brevis-onboarding-notifications onboarding-navigation">
@@ -224,6 +235,23 @@ class BrevisOnboardingNotifications extends Component {
 }
 
 class BrevisOnboardingLocation extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            havePermission: false
+        }
+    }
+
+    componentDidMount() {
+        GeoLocationService.haveUserPermission()
+            .then((result) => {
+                this.setState({
+                    havePermission: result
+                })
+            })
+    }
+
     _requestLocationPermissions() {
         GeoLocationService.getLatLng()
             .then((latlng) => {
@@ -232,6 +260,18 @@ class BrevisOnboardingLocation extends Component {
     }
 
     render() {
+        let locationStatusToShow = this.state.havePermission ? (
+            <div>
+                <div className="brevis-onboarding-location onboarding-location-enabled-text">Location Tracking is enabled.</div>
+                <div className="brevis-onboarding-location onboarding-location-helper-text">You can always change this later</div>
+            </div>
+        ) : (
+            <div>
+                <a onClick={this._requestLocationPermissions.bind(this)} href="javascirpt:void(0)" className="brevis-onboarding-location onboarding-enable-location-text">Enable Location Tracking</a>
+                <div className="brevis-onboarding-location onboarding-location-helper-text">You can always change this later</div>
+            </div>
+        );
+
         return (
             <div className="brevis-onboarding-location onboarding-outer-wrapper">
                 <div className="brevis-onboarding-global onboarding-header-spacer"></div>
@@ -242,8 +282,7 @@ class BrevisOnboardingLocation extends Component {
                     </div>
 
                     <div className="brevis-onboarding-location onboarding-enable-location-text-wrapper">
-                        <a onClick={this._requestLocationPermissions.bind(this)} href="javascirpt:void(0)" className="brevis-onboarding-location onboarding-enable-location-text">Enable Location Tracking</a>
-                        <div className="brevis-onboarding-location onboarding-location-helper-text">You can always change this later</div>
+                        {locationStatusToShow}
                     </div>
 
                     <div className="brevis-onboarding-location onboarding-navigation">

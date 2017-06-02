@@ -701,6 +701,11 @@
                 align-items: center;
             }
 
+            .brevis-onboarding-notifications.onboarding-notifications-enabled-text,
+            .brevis-onboarding-location.onboarding-location-enabled-text {
+                color: rgba(142, 214, 43, 1);
+            }
+
 
         /** Onboarding Finish **/
             .brevis-onboarding-finish.onboarding-outer-wrapper {
