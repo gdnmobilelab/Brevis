@@ -10,7 +10,7 @@ import GeoLocationService from '../../services/GeoLocationService';
 import ObservationService from '../../services/ObservationService';
 import PushService from '../../services/PushService';
 import NoticesService from '../../services/NoticesService';
-import UserContentService from '../../services/UserContentService';
+import UserRecommendationsservice from '../../services/UserRecommendationsService';
 
 import registerServiceWorker from '../../util/register-service-worker';
 import messaging from '../../util/firebase-messaging';
@@ -311,7 +311,7 @@ class BrevisOnboardingFinish extends Component {
         const store = this.context.store;
 
         store.dispatch({
-            type: 'SHOW_SETTINGS_MENU'
+            type: 'SHOW_SIDEBAR_MENU'
         });
 
         NoticesService.createSuccessNotice('Saved.');
@@ -321,8 +321,8 @@ class BrevisOnboardingFinish extends Component {
         store.dispatch({type: 'REQUEST_BRIEF_CONTENT'});
 
         // Todo this: move this to app start?
-        UserContentService
-            .fetchContent()
+        UserRecommendationsservice
+            .fetchRecommendations()
             .then((resp) => {
                 let contents = resp.contents;
                 let user = resp.user;

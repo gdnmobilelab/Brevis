@@ -20,7 +20,7 @@ class BrevisUserContentService @Inject() (
     userContentRecommendationDAO.getRecommendedContentForUserId(userId)
   }
 
-  def findRecentlyClickedContent(userId: String, limit: Int = 20): Seq[BrevisContent] = {
-    userContentDAO.findUserRecentlyClickedContent(userId, limit)
+  def findClickedContent(userId: String, limit: Int = 20): Seq[BrevisContent] = {
+    userContentDAO.findRecentlyClickedContent(userId, limit)
   }
 }

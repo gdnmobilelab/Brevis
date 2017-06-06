@@ -11,7 +11,7 @@ import store from './store';
 class BrevisLogin extends Component {
     componentDidMount() {
         store.dispatch({
-            type: 'HIDE_SETTINGS_MENU'
+            type: 'HIDE_SIDEBAR_MENU'
         })
     }
 

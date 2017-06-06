@@ -13,7 +13,7 @@ const initialState = {
     header: {
         showMenu: true
     },
-    settings: {
+    sidebar: {
         active: false,
     },
     notices: {
@@ -22,6 +22,10 @@ const initialState = {
     onboarding: {
         morningCommuteLength: 30,
         eveningCommuteLength: 30
+    },
+    settings: {
+        loading: false,
+        categories: []
     },
     pages: {
         brief: {},
@@ -141,25 +145,25 @@ export default createStore(function(state = initialState, action) {
                     loading: { $set: false }
                 }
             });
-        case 'TOGGLE_SETTINGS':
+        case 'TOGGLE_SIDEBAR':
             return update(state, {
-                settings: {
-                    active: { $set: !state.settings.active }
+                sidebar: {
+                    active: { $set: !state.sidebar.active }
                 }
             });
-        case 'CLOSE_SETTINGS':
+        case 'CLOSE_SIDEBAR':
             return update(state, {
-                settings: {
+                sidebar: {
                     active: { $set: false }
                 }
             });
-        case 'SHOW_SETTINGS_MENU':
+        case 'SHOW_SIDEBAR_MENU':
             return update(state, {
                 header: {
                     showMenu: { $set: true }
                 }
             });
-        case 'HIDE_SETTINGS_MENU':
+        case 'HIDE_SIDEBAR_MENU':
             return update(state, {
                 header: {
                     showMenu: { $set: false }
@@ -207,6 +211,19 @@ export default createStore(function(state = initialState, action) {
                     profile: {
                         form: { $set: action.form }
                     }
+                }
+            });
+        case 'FETCHING_USER_SETTINGS_CATEGORIES':
+            return update(state, {
+                settings: {
+                    loading: { $set: true }
+                }
+            });
+        case 'FETCHED_USER_SETTINGS_CATEGORIES':
+            return update(state, {
+                settings: {
+                    loading: { $set: false },
+                    categories: { $set: action.categories }
                 }
             });
         default:

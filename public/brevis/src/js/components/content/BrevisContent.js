@@ -10,11 +10,11 @@ import BrevisLoading from '../shared/BrevisLoading';
 import BrevisDB from '../../db/BrevisDB';
 
 class BrevisContent extends Component {
-    _showSettings() {
+    _showSidebar() {
         const store = this.context.store;
 
         store.dispatch({
-            type: 'TOGGLE_SETTINGS'
+            type: 'TOGGLE_SIDEBAR'
         })
     }
 
@@ -73,7 +73,7 @@ class BrevisContent extends Component {
 
         return (
             <div className="brevis-content">
-                <BrevisHeader onSettingsButtonClick={this._showSettings.bind(this)} />
+                <BrevisHeader onSidebarButtonClick={this._showSidebar.bind(this)} />
                 {toShow}
             </div>
         );

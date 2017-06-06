@@ -19,7 +19,7 @@ class BrevisUserContentRecommendationCreator @Inject() (
     briefId: String,
     commuteLength: Int,
     newContent: Seq[BrevisContent]): Seq[BrevisUserContentRecommendation] = {
-    val recentlyClickedContent = userContentService.findRecentlyClickedContent(userId)
+    val recentlyClickedContent = userContentService.findClickedContent(userId)
 
     val userReading = commuteRecommendationUtil.recommendContentForUserCommute(
       commuteLength,

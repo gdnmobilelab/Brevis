@@ -12,13 +12,14 @@ import store from './store';
 import BrevisDB from './db/BrevisDB';
 
 import BrevisHeader from './components/shared/BrevisHeader';
-import BrevisSettings from './components/shared/BrevisSettings';
+import BrevisSidebar from './components/shared/BrevisSidebar';
 import BrevisNotices from './components/shared/BrevisNotices';
 
 import BrevisBrief from './components/brief/BrevisBrief';
 import BrevisContent from './components/content/BrevisContent';
 import BrevisOnboarding from './components/onboarding/BrevisOnboarding';
 import BrevisProfile from './components/profile/BrevisProfile';
+import BrevisSettings from './components/settings/BrevisSettings';
 
 import GeoLocationService from './services/GeoLocationService';
 import ObservationService from './services/ObservationService';
@@ -65,15 +66,9 @@ class App extends Component {
         this.touchRegion = new ZingTouch.Region(document.body, false, false);
     }
 
-    showSettings() {
+    onSidebarClick() {
         store.dispatch({
-            type: 'TOGGLE_SETTINGS'
-        })
-    }
-
-    onSettingsClick() {
-        store.dispatch({
-            type: 'CLOSE_SETTINGS'
+            type: 'CLOSE_SIDEBAR'
         });
     }
 
@@ -152,14 +147,14 @@ class App extends Component {
     }
 
     render() {
-        let wrapperClass = classnames('brevis-wrapper', {'settings-active': this.props.settings.active});
+        let wrapperClass = classnames('brevis-wrapper', {'sidebar-active': this.props.sidebar.active});
 
         return (
             <div>
                 <div className={wrapperClass}>
-                    <BrevisSettings
+                    <BrevisSidebar
                         onLogout={this.onLogout.bind(this)}
-                        onClick={this.onSettingsClick.bind(this)}
+                        onClick={this.onSidebarClick.bind(this)}
                     />
                     {this.props.children}
                 </div>
@@ -171,7 +166,7 @@ class App extends Component {
 
 let app = connect(state => {
     return {
-        settings: state.settings
+        sidebar: state.sidebar
     }
 })(App);
 
@@ -182,6 +177,7 @@ const routes = (
                 <IndexRoute component={ BrevisBrief } />
                 <Route path="/content/:contentId" component={ BrevisContent } />
                 <Route path="/onboarding" component={ BrevisOnboarding } />
+                <Route path="/settings" component={ BrevisSettings } />
                 <Route path="/profile" component={ BrevisProfile } />
             </Route>
         </Router>

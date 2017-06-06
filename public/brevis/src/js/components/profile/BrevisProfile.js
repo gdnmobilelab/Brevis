@@ -16,11 +16,11 @@ class BrevisProfile extends Component {
         super(props)
     }
 
-    _showSettings() {
+    _showSidebar() {
         const store = this.context.store;
 
         store.dispatch({
-            type: 'TOGGLE_SETTINGS'
+            type: 'TOGGLE_SIDEBAR'
         })
     }
 
@@ -175,7 +175,7 @@ class BrevisProfile extends Component {
 
         return (
             <div className="brevis-profile">
-                <BrevisHeader onSettingsButtonClick={this._showSettings.bind(this)} />
+                <BrevisHeader onSidebarButtonClick={this._showSidebar.bind(this)} />
                 {toShow}
             </div>
         )

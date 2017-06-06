@@ -2,7 +2,7 @@ import 'whatwg-fetch'
 import objectAssign from './object-assign';
 
 /** Todo: Promise.race? **/
-function brevisFetch(url, opts = {}, timeout = 3000) {
+function brevisFetch(url, opts = {}, timeout = -1) {
     let timeoutId = null;
 
     return new Promise((resolve, reject) => {

@@ -34,7 +34,7 @@ class CommuteRecommendationUtilSpec extends AsyncFlatSpec with Matchers {
       new UserContentDAO(database),
       new UserContentRecommendationDAO(database))
     val commuteRecommendationUtil = new CommuteRecommendationUtil(new BrevisContentBasedRecommender())
-    val recentlyClickedContent = userContentSerivce.findRecentlyClickedContent("756be903-eb42-4c16-80e4-5b08e6de2e13")
+    val recentlyClickedContent = userContentSerivce.findClickedContent("756be903-eb42-4c16-80e4-5b08e6de2e13")
 
     val userReading = commuteRecommendationUtil.recommendContentForUserCommute(
       30,

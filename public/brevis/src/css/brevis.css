@@ -87,12 +87,13 @@
     /**** Header ****/
         .header,
         .header-content-selected {
-            background-color: #333;
+            background-color: #FFF;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 101;
+            box-shadow: 0 0px 6px rgba(0,0,0,.16);
         }
 
         .header .inner-header,
@@ -110,12 +111,26 @@
 
         .header .inner-header h1 {
             padding-left: 10px;
+            font-weight: 100;
+            font-size: 18px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .header a,
-        .header-content-selected a {
+        .header h1 a,
+        .header-content-selected h1 a {
             text-decoration: none;
-            color: #FEFEFE;
+            color: rgba(45, 53, 83, 1);
+        }
+
+        .header .settings-text-wrapper {
+            margin-right: 20px;
+            margin-top: 3px;
+        }
+
+        .header .settings-text-wrapper a {
+            color: #9d9d9d;
+            text-decoration: none;
         }
 
         /* Content Selected */
@@ -196,74 +211,74 @@
         }
 
 
-        /** Brevis Settings **/
-        .brevis-wrapper > .settings {
-            margin-top: 52px;
-            background-color: #333;
-            color: white;
-            min-width: 190px;
-            display: none;
-        }
+        /** Brevis Sidebar **/
+            .brevis-wrapper > .brevis-sidebar {
+                margin-top: 52px;
+                background-color: #333;
+                color: white;
+                min-width: 190px;
+                display: none;
+            }
 
-        .brevis-wrapper > .settings ul {
-            margin: 0;
-            padding: 0;
-            font-weight: bold;
-            width: 100%;
-        }
+            .brevis-wrapper > .brevis-sidebar ul {
+                margin: 0;
+                padding: 0;
+                font-weight: bold;
+                width: 100%;
+            }
 
-        .brevis-wrapper > .settings ul li {
-            width: 100%;
-        }
+            .brevis-wrapper > .brevis-sidebar ul li {
+                width: 100%;
+            }
 
-        .brevis-wrapper > .settings a,
-        .brevis-wrapper > .settings .link {
-            color: white;
-            text-decoration: none;
-            width: 100%;
-            padding: 20px 10px;
-            box-sizing: border-box;
-            display: block;
-            cursor: pointer;
-        }
+            .brevis-wrapper > .brevis-sidebar a,
+            .brevis-wrapper > .brevis-sidebar .link {
+                color: white;
+                text-decoration: none;
+                width: 100%;
+                padding: 20px 10px;
+                box-sizing: border-box;
+                display: block;
+                cursor: pointer;
+            }
 
-        .brevis-wrapper > .settings a:hover,
-        .brevis-wrapper > .settings .link:hover {
-            color: #008744;
-        }
+            .brevis-wrapper > .brevis-sidebar a:hover,
+            .brevis-wrapper > .brevis-sidebar .link:hover {
+                color: #008744;
+            }
 
-        .brevis-wrapper > .settings a.active,
-        .brevis-wrapper > .settings .link.active {
-            background-color: #008744;
-        }
+            .brevis-wrapper > .brevis-sidebar a.active,
+            .brevis-wrapper > .brevis-sidebar .link.active {
+                background-color: #008744;
+            }
 
-        .brevis-wrapper > .settings a.active:hover,
-        .brevis-wrapper > .settings .link.active:hover{
-            color: #fff;
-        }
+            .brevis-wrapper > .brevis-sidebar a.active:hover,
+            .brevis-wrapper > .brevis-sidebar .link.active:hover{
+                color: #fff;
+            }
 
-        .brevis-wrapper > .main {
-            flex-grow: 1;
-        }
+            .brevis-wrapper > .main {
+                flex-grow: 1;
+            }
 
         /** Brevis Settings Active **/
-        .brevis-wrapper.settings-active {
-            overflow: hidden;
-            width: calc(100% + 190px);
-        }
+            .brevis-wrapper.brevis-sidebar-active {
+                overflow: hidden;
+                width: calc(100% + 190px);
+            }
 
-        .brevis-wrapper.settings-active > .settings {
-            display: inherit;
-        }
+            .brevis-wrapper.brevis-sidebar-active > .brevis-sidebar {
+                display: inherit;
+            }
 
-        .brevis-wrapper.settings-active > .settings ul {
-            position: fixed;
-            width: 190px;
-        }
+            .brevis-wrapper.brevis-sidebar-active > .brevis-sidebar ul {
+                position: fixed;
+                width: 190px;
+            }
 
-        .brevis-wrapper.settings-active > .main {
-            min-width: 0;
-        }
+            .brevis-wrapper.brevis-sidebar-active > .main {
+                min-width: 0;
+            }
 
     /**** Brief ****/
         .main {
@@ -272,7 +287,8 @@
         /* Content List */
             /* Content */
                 .content-list .content-wrapper {
-                    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+                    /*box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);*/
+                    box-shadow: 0px 1px 9px rgba(0,0,0,.16);
                     border-radius: 2px;
                     margin-bottom: 20px;
                     font-size: 18px;
@@ -730,6 +746,58 @@
                 padding: 20px;
                 width: 100%;
                 cursor: pointer;
+            }
+
+        /** Brevis Settings **/
+            .brevis-settings.brevis-settings-wrapper {
+                width: 100%;
+                margin-top: 50px;
+            }
+
+            .brevis-settings .inner-header h1 {
+                padding-left: 0;
+            }
+
+            .brevis-settings.brevis-settings-toggle-bar {
+                display: flex;
+            }
+
+            .brevis-settings.brevis-settings-toggle-item {
+                width: 50%;
+                padding: 20px 0;
+                font-size: 18px;
+                text-align: center;
+                cursor: pointer;
+            }
+
+            .brevis-settings.brevis-settings-toggle-item.active {
+                border-bottom: 2px solid rgba(119, 160, 254, 1);
+            }
+
+            .brevis-settings-categories.brevis-settings-categories-description {
+                padding: 20px;
+                text-align: center;
+            }
+
+            .brevis-settings-categories.brevis-settings-categories-list {
+                padding: 0 20px;
+            }
+
+            .brevis-settings-categories.brevis-settings-category {
+                display: flex;
+                border-bottom: 1px solid rgba(241, 240, 328, 1);
+                padding: 15px 0;
+                font-weight: 100;
+                font-size: 20px;
+            }
+
+            .brevis-settings-categories.brevis-settings-category:first-child {
+                border-top: 1px solid rgba(241, 240, 328, 1);
+            }
+
+            .brevis-settings-categories.brevis-settings-category-count {
+                margin-left: auto;
+                color: rgba(119, 160, 254, 1);
             }
 
 /* Progress */

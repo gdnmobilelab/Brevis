@@ -21,11 +21,11 @@ class BrevisBrief extends Component {
         super(props);
     }
 
-    _showSettings() {
+    _showSidebar() {
         const store = this.context.store;
 
         store.dispatch({
-            type: 'TOGGLE_SETTINGS'
+            type: 'TOGGLE_SIDEBAR'
         })
     }
 
@@ -164,7 +164,7 @@ class BrevisBrief extends Component {
 
         return (
             <div className="brevis-brief">
-                <BrevisHeader onSettingsButtonClick={this._showSettings.bind(this)} />
+                <BrevisHeader onSidebarButtonClick={this._showSidebar.bind(this)} />
                 <div className="content-list">
                     {toShow}
                 </div>

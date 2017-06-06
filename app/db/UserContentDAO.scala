@@ -38,7 +38,7 @@ class UserContentDAO @Inject()(db: Database)
     }
   }
 
-  def findUserRecentlyClickedContent(userId: String, limit: Int): Seq[BrevisContent] = {
+  def findRecentlyClickedContent(userId: String, limit: Int): Seq[BrevisContent] = {
     db.withConnection { implicit conn =>
       SQL("select * from p_FindBrevisUserContentClick({userId}, {limit})")
       .on(

@@ -2,10 +2,7 @@ package services
 
 import com.google.inject.Inject
 import db.ContentDAO
-import models.{BrevisBrief, BrevisContent}
-import org.mongodb.scala.bson.collection.immutable.Document
-
-import scala.concurrent.Future
+import models.BrevisContent
 
 /**
   * Created by connor.jennings on 3/21/17.

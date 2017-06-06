@@ -86,7 +86,7 @@ function cacheResponse(request, response) {
 }
 
 function fetchAndCache(request, defaultResponse) {
-    return fetchRequest(request, isImageRequest(request) ? 150000 : 3000)
+    return fetchRequest(request)
         .then(cacheResponse.bind(this, request))
         .catch((err) => {
             console.log(err);

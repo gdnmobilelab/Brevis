@@ -1,4 +1,4 @@
-import UserContentService from '../services/UserContentService';
+import UserRecommendationsService from '../services/UserRecommendationsService';
 import ContentService from '../services/ContentService';
 import cacheURLOffline from '../util/cache-url-offline';
 
@@ -8,7 +8,7 @@ import BrevisDB from '../db/BrevisDB';
  * Returns { content, user }
  */
 export default function refreshContent() {
-    return UserContentService.fetchContent()
+    return UserRecommendationsService.fetchRecommendations()
         .then((resp) => {
             let contents = resp.contents;
             let user = resp.user;

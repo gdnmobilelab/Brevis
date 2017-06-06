@@ -21,21 +21,18 @@ class UserContentService {
 
     updateContentMeta(contentMeta) {
         return APIService
-            .post('/api/user/content/meta', {
-                contentId: contentMeta.contentId,
-                meta: contentMeta.meta
-            })
+            .post(`/api/user/content/${contentMeta.contentId}/meta`, contentMeta.meta)
             .catch((err) => {
                 console.log(`There was an error updating the content meta: ${err}`);
                 throw err;
             })
     }
 
-    fetchContent() {
+    findClickedContent() {
         return APIService
-            .get('/api/user/content')
+            .get('/api/user/content/clicked')
             .catch((err) => {
-                console.log(`There was an error getting the content: ${err}`);
+                console.log(`There was an error fetching the clicked content: ${err}`);
                 throw err;
             })
     }
