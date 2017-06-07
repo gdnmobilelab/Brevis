@@ -25,8 +25,12 @@ const initialState = {
     },
     settings: {
         loading: false,
-        categories: []
+        categories: [],
+        morningCommuteLength: 0,
+        eveningCommuteLength: 0
     },
+
+    //Todo: flatten this
     pages: {
         brief: {},
         content: {
@@ -128,6 +132,10 @@ export default createStore(function(state = initialState, action) {
                     loading: { $set: false },
                     failed: { $set: false },
                     current: { $set: action.user }
+                },
+                settings: {
+                    morningCommuteLength: { $set: action.user.morningCommuteLength },
+                    eveningCommuteLength: { $set: action.user.eveningCommuteLength }
                 }
             });
         case 'REQUEST_USER_FAILED':
@@ -178,6 +186,18 @@ export default createStore(function(state = initialState, action) {
         case 'SET_EVENING_COMMUTE_LENGTH':
             return update(state, {
                 onboarding: {
+                    eveningCommuteLength: { $set: action.eveningCommuteLength }
+                }
+            });
+        case 'SET_SETTINGS_MORNING_COMMUTE_LENGTH':
+            return update(state, {
+                settings: {
+                    morningCommuteLength: { $set: action.morningCommuteLength }
+                }
+            });
+        case 'SET_SETTINGS_EVENING_COMMUTE_LENGTH':
+            return update(state, {
+                settings: {
                     eveningCommuteLength: { $set: action.eveningCommuteLength }
                 }
             });

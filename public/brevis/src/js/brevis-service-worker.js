@@ -59,7 +59,7 @@ function isImageRequest(request) {
     return url.pathname.startsWith('/brevis/app/images/');
 }
 
-function fetchRequest(fetchRequest, timeout = 5000) {
+function fetchRequest(fetchRequest, timeout = -1) {
     return fetch(fetchRequest, {}, timeout);
 }
 

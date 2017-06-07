@@ -12,9 +12,7 @@ class BrevisSettingsCategories extends Component {
 
     render() {
         let domCategories = this.props.categories.sort((a, b) => {
-            if (a.count > b.count ) { return -1 }
-            else if (b.count > a.count) { return 1 }
-            else { return 0 }
+            if (a.count > b.count ) { return -1 } else { return 1 }
         }).map((category) => {
             return (
                 <div className="brevis-settings-categories brevis-settings-category">

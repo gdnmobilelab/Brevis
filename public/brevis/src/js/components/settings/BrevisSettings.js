@@ -6,6 +6,8 @@ import { connect } from 'inferno-redux';
 import BrevisSettingsCategories from './BrevisSettingsCategories';
 import BrevisSettingsTime from './BrevisSettingsTime';
 
+import BrevisGenericHeader from '../shared/BrevisGenericHeader';
+
 import classnames from 'classnames';
 
 import UserContentService from '../../services/UserContentService';
@@ -15,8 +17,14 @@ class BrevisSettings extends Component {
         super(props);
 
         this.state = {
-            activeMenu: 'CATEGORIES'
+            activeMenu: props.params.section ? props.params.section : 'categories'
         }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            activeMenu: nextProps.params.section ? nextProps.params.section : 'categories'
+        })
     }
 
     componentDidMount() {
@@ -50,25 +58,21 @@ class BrevisSettings extends Component {
 
     render() {
 
-        let toRender = this.state.activeMenu === 'CATEGORIES' ? <BrevisSettingsCategories categories={this.props.categories} /> : <BrevisSettingsTime/>;
+        let toRender = this.state.activeMenu === 'categories' ?
+            <BrevisSettingsCategories categories={this.props.categories} />
+            : <BrevisSettingsTime />;
 
         return (
             <div className="brevis-settings brevis-settings-wrapper">
-                <nav className="header">
-                    <div className="inner-header">
-                        <svg onClick={() => {
-                            this.context.router.push('/');
-                        }} className="clickable" fill="#9b9b9b" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"/>
-                            <path d="M0-.5h24v24H0z" fill="none"/>
-                        </svg>
-                        <h1><Link to="/settings">Settings</Link></h1>
-                    </div>
-                </nav>
+                <BrevisGenericHeader title="Settings" />
                 <div className="brevis-settings brevis-settings-main">
                     <div className="brevis-settings brevis-settings-toggle-bar">
-                        <div className={classnames('brevis-settings brevis-settings-toggle-item', {'active': this.state.activeMenu === 'CATEGORIES'})}>Categories</div>
-                        <div className={classnames('brevis-settings brevis-settings-toggle-item', {'active': this.state.activeMenu === 'TIME'})}>Time</div>
+                        <div onClick={() => {
+                           this.context.router.push('/settings/categories')
+                        }} className={classnames('brevis-settings brevis-settings-toggle-item', {'active': this.state.activeMenu === 'categories'})}>Categories</div>
+                        <div onClick={() => {
+                            this.context.router.push('/settings/time')
+                        }} className={classnames('brevis-settings brevis-settings-toggle-item', {'active': this.state.activeMenu === 'time'})}>Time</div>
                     </div>
                 </div>
                 {toRender}

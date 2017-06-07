@@ -37,6 +37,11 @@
         margin: 0 0 10px 0;
     }
 
+    a {
+        color: #0070c9;
+        text-decoration: none;
+    }
+
     .pull-right {
         float: right;
     }
@@ -117,10 +122,9 @@
             margin-right: auto;
         }
 
-        .header h1 a,
-        .header-content-selected h1 a {
-            text-decoration: none;
-            color: rgba(45, 53, 83, 1);
+        .header h1,
+        .header-content-selected h1 {
+            color: rgba(45,53,83,1);
         }
 
         .header .settings-text-wrapper {
@@ -212,11 +216,18 @@
 
 
         /** Brevis Sidebar **/
+            .sidebar-active .brevis-sidebar {
+                display: block !important;
+            }
+
             .brevis-wrapper > .brevis-sidebar {
-                margin-top: 52px;
-                background-color: #333;
+                position: fixed;
+                top: 0;
+                height: 100%;
+                z-index: 102;
+                background-color: rgba(52, 52, 52, 1);
                 color: white;
-                min-width: 190px;
+                width: 320px;
                 display: none;
             }
 
@@ -227,57 +238,94 @@
                 width: 100%;
             }
 
-            .brevis-wrapper > .brevis-sidebar ul li {
-                width: 100%;
+            .brevis-sidebar .sidebar-block {
+                padding: 30px 20px;
+                border-bottom: 1px solid #666;
+                display: flex;
+                flex-direction: column;
             }
 
-            .brevis-wrapper > .brevis-sidebar a,
-            .brevis-wrapper > .brevis-sidebar .link {
+            .brevis-sidebar .sidebar-block-header-wrapper {
+                display: flex;
+                align-items: center;
+            }
+
+            .brevis-sidebar .sidebar-profile-icon {
+                margin-top: -10px;
+                width: 30px;
+                height: 30px;
+                background-color: rgba(76, 110, 151, 1);
+                border-radius: 15px;
+                border: 3px solid white;
+                box-sizing: border-box;
+                margin-right: 10px;
+            }
+
+            .brevis-sidebar .sidebar-feedback-icon {
+                margin-top: -10px;
+                margin-right: 10px;
+            }
+
+            .brevis-sidebar .sidebar-header {
+                font-size: 20px;
+                border-bottom: 1px solid #fff;
+                margin-bottom: 10px;
+                padding-bottom: 2px;
+            }
+
+            .brevis-sidebar .sidebar-description {
+                font-size: 14px;
+                color: #666;
+            }
+
+            .brevis-sidebar .sidebar-about-brevis-block {
+                border-bottom: none;
+                display: flex;
+            }
+
+            .brevis-sidebar .sidebar-about-brevis-block .sidebar-description {
+                display: flex;
+            }
+
+            .brevis-sidebar .sidebar-about-text-wrapper {
+                border-bottom: 1px solid #999;
+                padding-bottom: 2px;
+            }
+
+            .brevis-sidebar .sidebar-header a {
                 color: white;
                 text-decoration: none;
-                width: 100%;
+            }
+
+            .brevis-sidebar .sidebar-description a {
+                color: #999;
+                text-decoration: none;
+            }
+
+            .brevis-sidebar .sidebar-menu {
+                padding: 10px;
+            }
+
+        /** Brevis About **/
+            .brevis-about .about-body {
+                margin-top: 50px;
+            }
+
+            .brevis-about .about-section {
                 padding: 20px 10px;
-                box-sizing: border-box;
-                display: block;
-                cursor: pointer;
             }
 
-            .brevis-wrapper > .brevis-sidebar a:hover,
-            .brevis-wrapper > .brevis-sidebar .link:hover {
-                color: #008744;
+            .brevis-about .about-header {
+                font-size: 20px;
+                margin-bottom: 10px;
             }
 
-            .brevis-wrapper > .brevis-sidebar a.active,
-            .brevis-wrapper > .brevis-sidebar .link.active {
-                background-color: #008744;
+            .brevis-about .about-description {
+                font-size: 16px;
             }
 
-            .brevis-wrapper > .brevis-sidebar a.active:hover,
-            .brevis-wrapper > .brevis-sidebar .link.active:hover{
-                color: #fff;
-            }
-
-            .brevis-wrapper > .main {
-                flex-grow: 1;
-            }
-
-        /** Brevis Settings Active **/
-            .brevis-wrapper.brevis-sidebar-active {
-                overflow: hidden;
-                width: calc(100% + 190px);
-            }
-
-            .brevis-wrapper.brevis-sidebar-active > .brevis-sidebar {
-                display: inherit;
-            }
-
-            .brevis-wrapper.brevis-sidebar-active > .brevis-sidebar ul {
-                position: fixed;
-                width: 190px;
-            }
-
-            .brevis-wrapper.brevis-sidebar-active > .main {
-                min-width: 0;
+            .brevis-about .about-description-light {
+                color: #aaa;
             }
 
     /**** Brief ****/
@@ -773,32 +821,73 @@
             .brevis-settings.brevis-settings-toggle-item.active {
                 border-bottom: 2px solid rgba(119, 160, 254, 1);
             }
+            
+            /** Categories **/
+                .brevis-settings-categories.brevis-settings-categories-description,
+                .brevis-settings-time.brevis-settings-time-description {
+                    padding: 20px;
+                    text-align: center;
+                }
+    
+                .brevis-settings-categories.brevis-settings-categories-list {
+                    padding: 0 20px;
+                }
+    
+                .brevis-settings-categories.brevis-settings-category {
+                    display: flex;
+                    border-bottom: 1px solid rgba(241, 240, 328, 1);
+                    padding: 15px 0;
+                    font-weight: 100;
+                    font-size: 20px;
+                }
+    
+                .brevis-settings-categories.brevis-settings-category:first-child {
+                    border-top: 1px solid rgba(241, 240, 328, 1);
+                }
+    
+                .brevis-settings-categories.brevis-settings-category-count {
+                    margin-left: auto;
+                    color: rgba(119, 160, 254, 1);
+                }
+                
+            /** Time **/
+                .brevis-settings-time.brevis-settings-time-timebox-wrapper {
+                    padding: 0;
+                }
+                
+                .brevis-settings-time.brevis-settings-time-timebox-row {
+                    display: flex;
+                    flex-direction: row;
+                    height: 100px;
+                    justify-content: center;
+                    align-items: center;
+                }
+                
+                .brevis-settings-time.brevis-settings-time-timebox-row-item {
+                    margin: 0 auto;
+                }
+                
+                .brevis-settings-time.brevis-settings-time-timebox-button {
+                    background-color: rgba(200, 199, 195, 1);
+                    padding: 15px;
+                }
+                
+                .brevis-settings-time.brevis-settings-time-timebox-button svg {
+                    background-color: rgba(200, 199, 195, 1);
+                    width: 24px;
+                    height: 24px;
+                }
 
-            .brevis-settings-categories.brevis-settings-categories-description {
-                padding: 20px;
-                text-align: center;
-            }
+                .brevis-settings-time.brevis-settings-time-save-wrapper {
+                    text-align: center;
+                    margin-top: 40px;
+                }
 
-            .brevis-settings-categories.brevis-settings-categories-list {
-                padding: 0 20px;
-            }
-
-            .brevis-settings-categories.brevis-settings-category {
-                display: flex;
-                border-bottom: 1px solid rgba(241, 240, 328, 1);
-                padding: 15px 0;
-                font-weight: 100;
-                font-size: 20px;
-            }
-
-            .brevis-settings-categories.brevis-settings-category:first-child {
-                border-top: 1px solid rgba(241, 240, 328, 1);
-            }
-
-            .brevis-settings-categories.brevis-settings-category-count {
-                margin-left: auto;
-                color: rgba(119, 160, 254, 1);
-            }
+                .brevis-settings-time.brevis-settings-time-save-wrapper a {
+                    text-decoration: none;
+                    color: rgba(113,175,234,1);
+                    font-size: 24px;
+                }
 
 /* Progress */
 .progress {

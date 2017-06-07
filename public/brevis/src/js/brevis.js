@@ -20,6 +20,7 @@ import BrevisContent from './components/content/BrevisContent';
 import BrevisOnboarding from './components/onboarding/BrevisOnboarding';
 import BrevisProfile from './components/profile/BrevisProfile';
 import BrevisSettings from './components/settings/BrevisSettings';
+import BrevisAbout from './components/about/BrevisAbout';
 
 import GeoLocationService from './services/GeoLocationService';
 import ObservationService from './services/ObservationService';
@@ -178,7 +179,9 @@ const routes = (
                 <Route path="/content/:contentId" component={ BrevisContent } />
                 <Route path="/onboarding" component={ BrevisOnboarding } />
                 <Route path="/settings" component={ BrevisSettings } />
+                <Route path="/settings/:section" component={ BrevisSettings } />
                 <Route path="/profile" component={ BrevisProfile } />
+                <Route path="/about" component={ BrevisAbout } />
             </Route>
         </Router>
     </Provider>
